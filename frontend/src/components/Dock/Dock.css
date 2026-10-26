@@ -1,0 +1,80 @@
+.dock-outer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* Hauteur fixe = hauteur du panel, le zoom sort vers le haut sans repousser le contenu */
+  overflow: visible;
+}
+
+.dock-panel {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  border-radius: 1.1rem;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0 0.6rem 0.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  /* Les items zoomés sortent vers le haut sans toucher au layout */
+  overflow: visible;
+}
+
+.dock-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.dock-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Bouton actif (page sélectionnée) */
+.dock-item--active {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Bouton sans bordure (fullscreen) — supprimé, même style que les autres */
+
+.dock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-label {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: fit-content;
+  white-space: pre;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.72rem;
+  font-family: degular, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* Images SVG dans le dock */
+.dock-icon img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  pointer-events: none;
+}
