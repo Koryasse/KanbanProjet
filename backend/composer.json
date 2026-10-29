@@ -1,0 +1,13 @@
+{
+    "name": "yassine/projet-kanban",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yassine\\ProjetKanban\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.7"
+    }
+}
