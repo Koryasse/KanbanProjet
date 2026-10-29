@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: degular;
+  src: url('assets/fonts/degular.otf');
+}
+
+body {
+  background-image: url('./assets/img/backgrounds/mountain.jpg');
+  background-position: center;
+  background-size: cover;
+  color: white;
+  user-select: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  font-family: degular;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+header p {
+  font-size: 1.5rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: degular;
+  height: 75vh;
+  text-align: center;
+}
+
+main div {
+  animation: opacity 1s ease-in-out;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Seul le Dock capte la souris, pas toute la largeur du footer */
+footer .dock-panel {
+  pointer-events: auto;
+}
+
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  font-family: degular;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.settings-panel {
+  background: #111;
+  color: white;
+  padding: 2rem;
+  width: 350px;
+  max-width: 90vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transform: translateX(100%);
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.199);
+  }
+}
+
+.settings-overlay.closing {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+.settings-panel.closing {
+  animation: slideOutRight 0.3s ease-in forwards;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.199);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}
