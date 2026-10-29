@@ -55,7 +55,7 @@ function App() {
       </header>
 
       {/* Main */}
-      {activePage === 'Home' && <Home />}
+      {activePage === 'Home' && <Home setActivePage={setActivePage}/>}
       {activePage === 'Focus' && <Focus />}
       {activePage === 'Tasks' && <Tasks />}
 
