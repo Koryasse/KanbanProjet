@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Dock from './Dock/Dock';
 import HomeIcon from '../assets/img/icons/home.svg';
 import TimerIcon from '../assets/img/icons/timer.svg';
@@ -5,9 +6,10 @@ import TasksIcon from '../assets/img/icons/tasks.svg';
 import SettingsIcon from '../assets/img/icons/settings.svg';
 import FullScreenIcon from '../assets/img/icons/fullscreen.svg';
 import FullScreenExitIcon from '../assets/img/icons/fullscreenExit.svg';
+import LoginIcon from '../assets/img/icons/login.svg';
 
 function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, isFullscreen }) {
-  
+
   // Liens vers les pages de l'application
   const items = [
     {
@@ -42,7 +44,11 @@ function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, 
 
   return (
     <footer>
-      <Dock items={items} magnification={52} baseItemSize={44} panelHeight={52} />
+      <div className="footer-content">
+        <div></div>
+        <Dock items={items} magnification={52} baseItemSize={44} panelHeight={52} />
+        <Link to="/login" className="login-btn"><img src={LoginIcon} alt="login icon" /></Link>
+      </div>
     </footer>
   );
 }

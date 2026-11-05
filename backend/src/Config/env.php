@@ -1,7 +1,4 @@
 <?php
-
-define("DB_HOST","localhost");
-define("DB_NAME","kanbanProjet");
-define("DB_USER","yassine");
-define("DB_PASS","super");
-define("DB_CHARSET","utf8");
+require_once __DIR__ . '/../../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();

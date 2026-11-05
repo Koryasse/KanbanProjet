@@ -9,11 +9,11 @@ function Home({ setActivePage }) {
   }, []);
 
   return (
-    <main>
-      <div>
+    <main className="dashboard-main">
+      <div className="home-content">
         <p>Beat the rush, own your time.</p>
         <h1>{now.toLocaleTimeString("fr-CH", { hour: "2-digit", minute: "2-digit" })}</h1>
-        <button onClick={() => setActivePage('Focus')}>Rush</button>
+        <button className="btn" onClick={() => setActivePage('Focus')}>Rush</button>
       </div>
     </main>
   );
