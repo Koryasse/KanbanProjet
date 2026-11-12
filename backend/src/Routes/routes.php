@@ -8,4 +8,10 @@ return function (App $app) {
     $app->get('/', [AccueilController::class, 'index']);
     $app->get('/equipes', [EquipesController::class, 'getAllEquipes']);
     $app->get('/equipes/{id}', [EquipesController::class, 'getEquipeById']);
+
+    // group
+
+    -get /api/cartes/ : CartesController
+    -put /api/cartes/ : CartesController 
+
 };

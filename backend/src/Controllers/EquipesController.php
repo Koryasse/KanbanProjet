@@ -26,4 +26,7 @@ class EquipesController extends RenderController
             'equipe' => $equipe,
         ]);
     }
+
+    // getCartes
+        return $this->renderToJson
 }

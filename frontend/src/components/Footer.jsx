@@ -7,6 +7,7 @@ import SettingsIcon from '../assets/img/icons/settings.svg';
 import FullScreenIcon from '../assets/img/icons/fullscreen.svg';
 import FullScreenExitIcon from '../assets/img/icons/fullscreenExit.svg';
 import LoginIcon from '../assets/img/icons/login.svg';
+import LogoutIcon from '../assets/img/icons/logout.svg';
 
 function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, isFullscreen }) {
 

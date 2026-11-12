@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class RenderController
 {
-    protected function render(Response $response, string $view, array $data = []): Response
+    protected function renderToJson(Response $response, string $view, array $data = []): Response
     {
         extract($data);
 
@@ -16,4 +16,6 @@ class RenderController
 
         return $response;
     }
+
+    // nouvelle fonction rendertojson ...
 }
