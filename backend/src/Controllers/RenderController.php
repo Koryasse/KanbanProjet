@@ -6,16 +6,13 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class RenderController
 {
-    protected function renderToJson(Response $response, string $view, array $data = []): Response
+    // Renvoie les données au format JSON
+    protected function renderToJson(Response $response, $data, int $status = 200): Response
     {
-        extract($data);
+        $response->getBody()->write(json_encode($data));
 
-        ob_start();
-        include dirname(__DIR__) . '/Views/' . $view . '.php';
-        $response->getBody()->write(ob_get_clean());
-
-        return $response;
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus($status);
     }
-
-    // nouvelle fonction rendertojson ...
 }

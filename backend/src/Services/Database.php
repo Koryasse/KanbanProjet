@@ -16,14 +16,10 @@ class Database
             return self::$pdo;
         }
 
-        $host = $_ENV['DB_HOST'] ?? null;
-        $name = $_ENV['DB_NAME'] ?? null;
-        $user = $_ENV['DB_USER'] ?? null;
-        $pass = $_ENV['DB_PASS'] ?? null;
-
-        if ($host === null || $name === null || $user === null || $pass === null) {
-            throw new RuntimeException('Variables DB_HOST, DB_NAME, DB_USER et DB_PASS manquantes dans l\'environnement.');
-        }
+        $host = $_ENV['DB_HOST'];
+        $name = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pass = $_ENV['DB_PASS'];
 
         $dsn = sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', $host, $name);
 

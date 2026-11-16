@@ -1,17 +1,20 @@
 <?php
 
 use Slim\App;
-use App\Controllers\AccueilController;
-use App\Controllers\EquipesController;
+use Slim\Routing\RouteCollectorProxy;
+use App\Controllers\UserController;
+use App\Controllers\TaskController;
 
 return function (App $app) {
-    $app->get('/', [AccueilController::class, 'index']);
-    $app->get('/equipes', [EquipesController::class, 'getAllEquipes']);
-    $app->get('/equipes/{id}', [EquipesController::class, 'getEquipeById']);
+    $app->group('/api', function (RouteCollectorProxy $group) {
+        // Utilisateurs
+        $group->post('/register', [UserController::class, 'register']);
+        $group->post('/login', [UserController::class, 'login']);
 
-    // group
-
-    -get /api/cartes/ : CartesController
-    -put /api/cartes/ : CartesController 
-
+        // Tâches
+        $group->get('/users/{userId}/tasks', [TaskController::class, 'getAllTasks']);
+        $group->post('/users/{userId}/tasks', [TaskController::class, 'createTask']);
+        $group->put('/tasks/{id}', [TaskController::class, 'updateTask']);
+        $group->delete('/tasks/{id}', [TaskController::class, 'deleteTask']);
+    });
 };
