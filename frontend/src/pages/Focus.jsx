@@ -3,8 +3,8 @@ import restartIcon from '../assets/img/icons/restart.svg'
 
 // Durée de chaque mode (en secondes)
 const DURATIONS = {
-  rush: 25 * 60,
-  shortBreak: 5 * 60,
+  rush: 0.5 * 60,
+  shortBreak: 0.5 * 60,
   longBreak: 15 * 60,
 };
 
@@ -60,7 +60,7 @@ function Focus() {
     <main className="dashboard-main">
       <div className="focus-content">
         <div className="focus-modes">
-          {Object.keys(DURATIONS).map((key) => (
+          {Object.keys(DURATIONS).map((key) => ( 
             <button
               key={key}
               className={mode === key ? "btn active" : "btn"}

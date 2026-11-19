@@ -9,7 +9,7 @@ import FullScreenExitIcon from '../assets/img/icons/fullscreenExit.svg';
 import LoginIcon from '../assets/img/icons/login.svg';
 import LogoutIcon from '../assets/img/icons/logout.svg';
 
-function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, isFullscreen }) {
+function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, isFullscreen, user, onLogout }) {
 
   // Liens vers les pages de l'application
   const items = [
@@ -48,7 +48,13 @@ function Footer({ activePage, setActivePage, toggleParameter, toggleFullscreen, 
       <div className="footer-content">
         <div></div>
         <Dock items={items} magnification={52} baseItemSize={44} panelHeight={52} />
-        <Link to="/login" className="login-btn"><img src={LoginIcon} alt="login icon" /></Link>
+        {user ? (
+          <button className="login-btn" onClick={onLogout} title={`Log out (${user.name})`}>
+            <img src={LogoutIcon} alt="logout icon" />
+          </button>
+        ) : (
+          <Link to="/login" className="login-btn"><img src={LoginIcon} alt="login icon" /></Link>
+        )}
       </div>
     </footer>
   );

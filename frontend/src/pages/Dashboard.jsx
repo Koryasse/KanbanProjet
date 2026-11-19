@@ -4,6 +4,7 @@ import Settings from '../components/Settings';
 import Home from '../pages/Home';
 import Focus from '../pages/Focus';
 import Tasks from '../pages/Tasks';
+import { getUser, logout } from '../services/auth';
 
 function Dashboard() {
   // Page affichée
@@ -12,6 +13,14 @@ function Dashboard() {
   // Panneau des paramètres
   const [showSettings, setShowSettings] = useState(false);
   const [settingsClosing, setSettingsClosing] = useState(false);
+
+  // Utilisateur connecté (null si déconnecté)
+  const [user, setUser] = useState(getUser);
+
+  function handleLogout() {
+    logout();
+    setUser(null);
+  }
 
   // Plein écran
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -56,7 +65,7 @@ function Dashboard() {
       {/* Main */}
       {activePage === 'Home' && <Home setActivePage={setActivePage}/>}
       {activePage === 'Focus' && <Focus />}
-      {activePage === 'Tasks' && <Tasks />}
+      {activePage === 'Tasks' && <Tasks user={user} />}
 
       {showSettings && <Settings onClose={toggleParameter} closing={settingsClosing} onClosed={onSettingsClosed} />}
 
@@ -64,6 +73,8 @@ function Dashboard() {
       <Footer activePage={activePage} setActivePage={setActivePage} toggleParameter={toggleParameter}
         toggleFullscreen={toggleFullscreen}
         isFullscreen={isFullscreen}
+        user={user}
+        onLogout={handleLogout}
       />
     </>
   )

@@ -8,6 +8,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class TaskController extends RenderController
 {
+    // Colonnes du kanban acceptées
+    private const STATUS = ['todo', 'doing', 'done'];
+
     // Récupère toutes les tâches
     public function getAllTasks(Request $request, Response $response, array $args): Response
     {
@@ -18,8 +21,18 @@ class TaskController extends RenderController
     // Créer une tâche
     public function createTask(Request $request, Response $response, array $args): Response
     {
-        $data = $request->getParsedBody();
-        $id = Task::create($args['userId'], $data['title'], $data['status'] ?? 'todo');
+        $data = $request->getParsedBody() ?? [];
+        $title = trim($data['title'] ?? '');
+        $status = $data['status'] ?? 'todo';
+
+        if ($title === '') {
+            return $this->renderToJson($response, ['error' => 'Le titre est obligatoire'], 400);
+        }
+        if (!in_array($status, self::STATUS, true)) {
+            return $this->renderToJson($response, ['error' => 'Statut invalide'], 400);
+        }
+
+        $id = Task::create($args['userId'], $title, $status);
 
         return $this->renderToJson($response, Task::findById($id), 201);
     }
@@ -32,8 +45,14 @@ class TaskController extends RenderController
             return $this->renderToJson($response, ['error' => 'Tâche introuvable'], 404);
         }
 
-        $data = $request->getParsedBody();
-        Task::update($args['id'], $data['title'] ?? $task['title'], $data['status'] ?? $task['status']);
+        $data = $request->getParsedBody() ?? [];
+        $status = $data['status'] ?? $task['status'];
+
+        if (!in_array($status, self::STATUS, true)) {
+            return $this->renderToJson($response, ['error' => 'Statut invalide'], 400);
+        }
+
+        Task::update($args['id'], $data['title'] ?? $task['title'], $status);
 
         return $this->renderToJson($response, Task::findById($args['id']));
     }

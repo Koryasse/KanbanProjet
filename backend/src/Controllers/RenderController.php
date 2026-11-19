@@ -11,8 +11,6 @@ class RenderController
     {
         $response->getBody()->write(json_encode($data));
 
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withStatus($status);
+        return $response->withHeader('Content-Type', 'application/json')->withStatus($status);
     }
 }

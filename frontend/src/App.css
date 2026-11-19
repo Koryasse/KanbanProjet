@@ -85,6 +85,7 @@ footer .dock-panel {
 .login-btn {
   position: inline-block;
   pointer-events: auto;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: .6rem .7rem;
@@ -119,6 +120,7 @@ footer .dock-panel {
   font-weight: 600;
   color: black;
   background-color: white;
+  text-decoration: none;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -254,6 +256,10 @@ footer .dock-panel {
   max-width: 1000px;
 }
 
+.tasks-content p {
+  margin-bottom: 20px;
+}
+
 .tasks-content div {
   animation: none;
 }
@@ -356,4 +362,8 @@ main div .task-card p {
 .task-actions button:disabled {
   opacity: 0.3;
   cursor: default;
+}
+.tasks-error {
+  color: #ff8a8a;
+  text-align: center;
 }

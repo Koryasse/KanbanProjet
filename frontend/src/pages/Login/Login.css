@@ -108,3 +108,9 @@
         max-width: 100%;
     }
 }
+
+.login-main .form-error {
+    color: #d33;
+    font-size: 13px;
+    margin: 4px 0 0;
+}

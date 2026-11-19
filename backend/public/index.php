@@ -8,11 +8,12 @@ require __DIR__ . '/../src/Config/env.php';
 
 $app = AppFactory::create();
 
-// Permet de lire le JSON envoyé par le frontend avec $request->getParsedBody()
+// Permet de lire le JSON envoyé par le frontend
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
-$app->add(new CorsMiddleware());
 $app->addErrorMiddleware(true, true, true);
+// Ajouté en dernier = exécuté en premier : les réponses d'erreur ont aussi les en-têtes CORS
+$app->add(new CorsMiddleware());
 
 $routes = require __DIR__ . '/../src/Routes/routes.php';
 $routes($app);
